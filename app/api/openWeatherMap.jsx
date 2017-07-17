@@ -1,7 +1,5 @@
 var axios = require('axios');
 
-
-
 const OPEN_WEATHER_MAP_URL = 'http://api.openweathermap.org/data/2.5/weather?appid=a1bd47854e32c2046b0bfe3b8c8dad19&units=metric';
 
 module.exports = {
@@ -17,15 +15,16 @@ module.exports = {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     }).then(function (res) {
-      debugger;
-      if (res.data.cod && res.data.message) {
+      if (res.response.data.cod && res.response.data.message) {
+        debugger;
         throw new Error(res.data.message);
       } else {
+        debugger;
         return res.data.main.temp;
       }
     }, function (res) {
-      debugger
-      throw new Error(res.data.message);
+      debugger;
+      throw new Error(res.response.data.message);
     });
   }
 }
