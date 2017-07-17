@@ -15,15 +15,12 @@ module.exports = {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     }).then(function (res) {
-      if (res.response.data.cod && res.response.data.message) {
-        debugger;
+      if (res.data.cod && res.data.message) {
         throw new Error(res.data.message);
       } else {
-        debugger;
         return res.data.main.temp;
       }
     }, function (res) {
-      debugger;
       throw new Error(res.response.data.message);
     });
   }
